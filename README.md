@@ -14,4 +14,4 @@ Then you can install the response-logic package with [pip](https://pypi.org/proj
 pip install git+https://github.com/GrossTor/response-logic#egg=response_logic
 ```
 
-Once installed you can download the projects folder to run the response logic approach on various example data sets. Look into the `toy_model` project to learn how to use the package. Every project is documented with a dedicated README in its according subfolder.
+The response-logic package was used in various reverse engineering projects, which can be found in the [response-logic-projects repository](https://github.com/GrossTor/response-logic-projects). This includes the `toy_model` project that explains how to use the response-logic package.
