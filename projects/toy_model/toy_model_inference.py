@@ -115,5 +115,5 @@ for i,j in ([1,0],[1,1],[2,0],[2,1],[3,0],[3,1]):
         axs[i,j].scatter(source+0.5,target+0.5,marker='*',color='forestgreen',s=150)
 
 plt.tight_layout()
-#plt.savefig('toy_model_inference.pdf')
+plt.savefig('toy_model_inference.pdf')
 plt.show()
