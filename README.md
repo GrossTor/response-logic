@@ -8,8 +8,10 @@ It can be [installed](https://github.com/potassco/clingo/blob/master/INSTALL.md)
 conda install -c potassco clingo=5.2.2
 ```
 
-Then you can install the response-logic package with pip:
+Then you can install the response-logic package with [pip](https://pypi.org/project/pip/):
 
 ```
-pip install git+https://github.com/GrossTor/response-logic
+pip install git+https://github.com/GrossTor/response-logic#egg=response_logic
 ```
+
+Once installed you can download the projects folder to run the response logic approach on various example data sets. Look into the `toy_model` project to learn how to use the package. Every project is documented with a dedicated README in its according subfolder.
