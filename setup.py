@@ -24,5 +24,6 @@ setuptools.setup(
 	'networkx',
 	'pandas',
     ],
+    include_package_data=True,#this allows to specify in MANIFEST.in to include the ASP programs in the installation.
 )
 
