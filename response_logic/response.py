@@ -164,7 +164,7 @@ def on_finish(finish):
 class brave_context:
     def is_brave_structure(self,r,c,b): 
         #my_logger(r,type(r),'\n')
-        return b.number in brave[(r.number,c.number)]
+        return clingo.Number(b.number in brave[(r.number,c.number)])
 
 
 def brave_solving(model,mode='edge',heuristics={},timeout=None,assumptions=False,):
@@ -205,8 +205,8 @@ def brave_solving(model,mode='edge',heuristics={},timeout=None,assumptions=False
         finishing_time=time.time()+timeout
         remaining_time=timeout
         def solve_call(prg,assumptions,remaining_time):
-            with prg.solve(on_model=on_model_func, on_finish=on_finish, 
-                           assumptions=assumptions, async=True) as handle:
+            with prg.solve(on_model=on_model_func, on_finish=on_finish,
+                           assumptions=assumptions, async_=True) as handle:
                 finished=handle.wait(remaining_time)
                 if not finished:
                     #search did not finish in time. Interrupt! Maybe better
@@ -267,6 +267,7 @@ def brave_solving(model,mode='edge',heuristics={},timeout=None,assumptions=False
     remaining_time=finishing_time-time.time()
     while remaining_time>0 and finished:
         remaining_time=finishing_time-time.time()
+        # print('hoppa')
         rxn_logic_pgr.ground([("brave", [])],context)
         #rxn_logic_pgr.ground([("brave", [])])
         finished=solve_call(rxn_logic_pgr,assumptions,remaining_time)
@@ -401,7 +402,7 @@ def conform_response_pattern(model,scheme='star-model',heuristics={},ASP_options
             rxn_logic_pgr=prepare_ASP_program(model,'star_model.lp',ASP_options=ASP_options)
             rxn_logic_pgr.ground([("base", [])])
             callback['ASP_terms'],callback['ASP_shown'],callback['rets']=[],[],[]  
-            with rxn_logic_pgr.solve(on_model=on_model,async=True) as handle:
+            with rxn_logic_pgr.solve(on_model=on_model,async_=True) as handle:
                 nbr_solve_calls+=1
                 finished=handle.wait(fact_timeout)
                 if finished:
@@ -456,7 +457,7 @@ def conform_response_pattern(model,scheme='star-model',heuristics={},ASP_options
             rxn_logic_pgr.load(os.path.join(ASP_programs_folder,'reaction_constraints.lp'))
             rxn_logic_pgr.ground([("base", [])])
             callback['ASP_terms'],callback['ASP_shown'],callback['rets']=[],[],[]  
-            with rxn_logic_pgr.solve(on_model=on_model,async=True) as handle:
+            with rxn_logic_pgr.solve(on_model=on_model, async_=True) as handle:
                 finished=handle.wait(fact_timeout)
                 if finished:
                     #print(callback['ASP_shown'])
